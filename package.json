@@ -1486,9 +1486,6 @@
         "runtime": "node",
         "configurationAttributes": {
           "launch": {
-            "required": [
-              "program"
-            ],
             "properties": {
               "gdb": {
                 "type": "string",
@@ -1528,6 +1525,11 @@
               "verbose": {
                 "type": "boolean",
                 "description": "Produce verbose log output",
+                "default": false
+              },
+              "verifyAppBinBeforeDebug": {
+                "type": "boolean",
+                "description": "%esp_idf.verifyAppBinBeforeDebug.description%",
                 "default": false
               },
               "logFile": {
@@ -1727,9 +1729,6 @@
             }
           },
           "attach": {
-            "required": [
-              "program"
-            ],
             "properties": {
               "gdb": {
                 "type": "string",
@@ -1769,6 +1768,11 @@
               "verbose": {
                 "type": "boolean",
                 "description": "Produce verbose log output",
+                "default": false
+              },
+              "verifyAppBinBeforeDebug": {
+                "type": "boolean",
+                "description": "%esp_idf.verifyAppBinBeforeDebug.description%",
                 "default": false
               },
               "logFile": {
@@ -1958,7 +1962,7 @@
                 "maintenance flush register-cache",
                 "thb app_main"
               ],
-              "gdb": "${command:espIdf.getXtensaGdb}",
+              "gdb": "^\"\\${command:espIdf.getXtensaGdb}\"",
               "target": {
                 "port": "3333"
               }
