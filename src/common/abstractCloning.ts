@@ -246,14 +246,12 @@ export class AbstractCloning {
       "esp-components",
     ];
     await execChildProcess(
-      this.gitBinPath,
-      ["submodule", "init"],
+      `${this.gitBinPath} submodule init`,
       repoPath,
       OutputChannel.init()
     );
     const gitModules = await execChildProcess(
-      this.gitBinPath,
-      ["config", "-f", ".gitmodules", "--list"],
+      `${this.gitBinPath} config -f .gitmodules --list`,
       repoPath,
       OutputChannel.init()
     );
@@ -299,8 +297,7 @@ export class AbstractCloning {
         }
 
         await execChildProcess(
-          this.gitBinPath,
-          ["config", `submodule.${subPath}.url`, subUrl],
+          `${this.gitBinPath} config submodule.${subPath}.url ${subUrl}`,
           repoPath,
           OutputChannel.init()
         );

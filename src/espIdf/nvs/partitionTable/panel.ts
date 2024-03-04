@@ -182,8 +182,7 @@ export class NVSPartitionTable {
       }
       OutputChannel.appendLine(`${pythonBinPath} ${partToolArgs.join(" ")}`);
       const result = await execChildProcess(
-        pythonBinPath,
-        partToolArgs,
+        `${pythonBinPath} ${partToolArgs.join(" ")}`,
         dirPath
       );
       OutputChannel.appendLine(result);

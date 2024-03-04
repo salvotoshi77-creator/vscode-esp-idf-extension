@@ -15,11 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { execFile, ExecOptions } from "child_process";
+import { exec, ExecOptions } from "child_process";
 
 export function execChildProcess(
-  command: string,
-  args: string[] = [],
+  cmd: string,
   pathWhereToExecute: string,
   opts?: ExecOptions
 ) {
@@ -30,7 +29,7 @@ export function execChildProcess(
     };
   }
   return new Promise<string>((resolve, reject) => {
-    execFile(command, args, opts, (error: Error, stdout: string, stderr: string) => {
+    exec(cmd, opts, (error: Error, stdout: string, stderr: string) => {
       if (error) {
         return reject(error);
       }
