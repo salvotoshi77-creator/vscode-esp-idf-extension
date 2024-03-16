@@ -88,7 +88,7 @@ export async function createSBOM(workspaceUri: Uri) {
       clear: false,
       panel: TaskPanelKind.Shared,
     } as TaskPresentationOptions;
-    const command = "esp-idf-sbnom";
+    const command = "esp-idf-sbom";
     const argsCreating = [
       "create",
       projectDescriptionJson,
