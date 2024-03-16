@@ -32,7 +32,8 @@ export async function jtagFlashCommand(workspace: Uri) {
   let continueFlag = true;
   const isOpenOCDLaunched = await OpenOCDManager.init().promptUserToLaunchOpenOCDServer();
   if (!isOpenOCDLaunched) {
-    const errStr = "Can't perform JTag flash, because OpenOCD server is not running!";
+    const errStr =
+      "Can't perform JTag flash, because OpenOCD server is not running!";
     OutputChannel.appendLineAndShow(errStr, "Flash");
     return Logger.warnNotify(errStr);
   }
@@ -45,10 +46,7 @@ export async function jtagFlashCommand(workspace: Uri) {
     "openocd.jtag.command.force_unix_path_separator",
     workspace
   );
-  let buildPath = readParameter(
-    "idf.buildPath",
-    workspace
-  ) as string;
+  let buildPath = readParameter("idf.buildPath", workspace) as string;
   const customTask = new CustomTask(Uri.file(buildPath));
   if (forceUNIXPathSeparator === true) {
     buildPath = buildPath.replace(/\\/g, "/");
@@ -56,7 +54,13 @@ export async function jtagFlashCommand(workspace: Uri) {
   try {
     customTask.addCustomTask(CustomTaskType.PreFlash);
     await customTask.runTasks(CustomTaskType.PreFlash);
-    await jtag.flash("program_esp_bins", buildPath, "flasher_args.json", "verify", "reset");
+    await jtag.flash(
+      "program_esp_bins",
+      buildPath,
+      "flasher_args.json",
+      "verify",
+      "reset"
+    );
     customTask.addCustomTask(CustomTaskType.PostFlash);
     await customTask.runTasks(CustomTaskType.PostFlash);
     const msg = "⚡️ Flashed Successfully (JTag)";

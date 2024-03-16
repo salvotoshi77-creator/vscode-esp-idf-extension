@@ -803,14 +803,23 @@ export async function fixFileModeGitRepository(
     const modifiedEnv = appendIdfAndToolsToPath(workingDirUri);
     const fixFileModeResult = await execChildProcess(
       gitPath,
-    ["config", "--local", "core.fileMode", "false"],
+      ["config", "--local", "core.fileMode", "false"],
       workingDir,
       OutputChannel.init(),
       { env: modifiedEnv, cwd: workingDir }
     );
     const fixSubmodulesFileModeResult = await execChildProcess(
       gitPath,
-      ["submodule", "foreach", "--recursive", "git", "config", "--local", "core.fileMode", "false"],
+      [
+        "submodule",
+        "foreach",
+        "--recursive",
+        "git",
+        "config",
+        "--local",
+        "core.fileMode",
+        "false",
+      ],
       workingDir,
       OutputChannel.init(),
       { env: modifiedEnv, cwd: workingDir }
