@@ -145,6 +145,7 @@ describe("Configure extension", () => {
     const expressElement = await view.findWebElement(
       By.id("express-install-btn")
     );
+    await new Promise((res) => setTimeout(res, 1000));
     await expressElement.click();
     await new Promise((res) => setTimeout(res, 1000));
 
