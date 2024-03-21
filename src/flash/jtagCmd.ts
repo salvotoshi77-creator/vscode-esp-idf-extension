@@ -46,8 +46,11 @@ export async function jtagFlashCommand(workspace: Uri) {
     "openocd.jtag.command.force_unix_path_separator",
     workspace
   );
-  let buildPath = readParameter("idf.buildPath", workspace) as string;
-  const customTask = new CustomTask(Uri.file(buildPath));
+  let buildPath = readParameter(
+    "idf.buildPath",
+    workspace
+  ) as string;
+  const customTask = new CustomTask(workspace);
   if (forceUNIXPathSeparator === true) {
     buildPath = buildPath.replace(/\\/g, "/");
   }
