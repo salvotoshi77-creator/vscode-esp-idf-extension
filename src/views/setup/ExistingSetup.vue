@@ -11,11 +11,11 @@ const setupMode = computed(() => {
 });
 
 const isVersionLowerThan5 = (version: string): boolean => {
-  if (!version) return false;
-  const versionParts = version.split(".");
-  const majorVersion = Number(versionParts[0]);
-  return majorVersion < 5;
-};
+    if (!version) return false;
+    const versionParts = version.split(".");
+    const majorVersion = Number(versionParts[0]);
+    return majorVersion < 5;
+  }
 
 function goTo(route: string, setupMode: SetupMode) {
   router.push(route);
@@ -61,8 +61,7 @@ function goTo(route: string, setupMode: SetupMode) {
         <p>IDF Tools path: {{ prevSetup.toolsPath }}</p>
         <p>Git path: {{ prevSetup.gitPath }}</p>
         <p v-if="isVersionLowerThan5(prevSetup.version)" class="warning-text">
-          Whitespaces in project, ESP-IDF and ESP Tools paths are not supported
-          in versions lower than 5.0
+          Whitespaces in project, ESP-IDF and ESP Tools paths are not supported in versions lower than 5.0
         </p>
       </div>
     </div>
@@ -74,5 +73,6 @@ function goTo(route: string, setupMode: SetupMode) {
 .warning-text {
   color: var(--vscode-editorWarning-foreground);
   font-size: small;
+  
 }
 </style>
